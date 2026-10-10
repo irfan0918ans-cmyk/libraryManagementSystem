@@ -21,6 +21,7 @@ public class Author {
     private Integer id;
     private String authorName;
     private String gender;
+    private Integer age;
     private Boolean isDeleted;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

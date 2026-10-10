@@ -23,7 +23,6 @@ public class Book {
     private String Edition;
     private double price;
     private String publishedBy;
-    private LocalDateTime publishedDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Boolean isDeleted;
