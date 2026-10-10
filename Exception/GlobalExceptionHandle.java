@@ -1,0 +1,22 @@
+package com.management.libraryManagementSystem.Exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class GlobalExceptionHandle {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleException(Exception e){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(e.getMessage());
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntimeException(RuntimeException e){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(e.getMessage());
+    }
+}
