@@ -22,7 +22,7 @@ public class Author {
     private String authorName;
     private String gender;
     private Integer age;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;

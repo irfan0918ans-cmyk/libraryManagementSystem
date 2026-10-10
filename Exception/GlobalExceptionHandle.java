@@ -19,4 +19,10 @@ public class GlobalExceptionHandle {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(AuthorNotFoundException.class)
+    public ResponseEntity<?> handleAuthorNotFoundException(AuthorNotFoundException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
 }

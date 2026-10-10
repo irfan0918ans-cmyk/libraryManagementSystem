@@ -25,7 +25,7 @@ public class Book {
     private String publishedBy;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private Boolean isDeleted;
+    private Boolean isDeleted = false;
     private LocalDateTime deletedAt;
 
     @ManyToOne
