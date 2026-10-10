@@ -25,4 +25,10 @@ public class GlobalExceptionHandle {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(e.getMessage());
     }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public ResponseEntity<?> handleBookNotFoundException(BookNotFoundException e){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage());
+    }
 }
