@@ -20,7 +20,6 @@ public class BookResponseDTO {
     private double price;
     private String publishedBy;
     private LocalDateTime createdAt;
-    private Author author;
 
     public static BookResponseDTO toBookResponseDTO(Book book){
         BookResponseDTO bookResponseDTO = new BookResponseDTO();

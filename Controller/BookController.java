@@ -44,4 +44,11 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(bookService.getAllBookService());
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<BookResponseDTO> updateBookController(@RequestParam String name,
+                                                                @RequestBody BookRequestDTO bookRequestDTO){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(bookService.updateBookService(name,bookRequestDTO));
+    }
 }

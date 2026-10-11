@@ -66,4 +66,19 @@ public class BookService {
                 .map(book -> BookResponseDTO.toBookResponseDTO(book))
                 .toList();
     }
+
+    public BookResponseDTO updateBookService(String name, BookRequestDTO bookRequestDTO){
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+                .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
+
+        book.setName(bookRequestDTO.getName());
+        book.setPrice(bookRequestDTO.getPrice());
+        book.setEdition(bookRequestDTO.getEdition());
+        book.setPublishedBy(bookRequestDTO.getPublishedBy());
+        book.setUpdatedAt(LocalDateTime.now());
+
+        bookRepository.save(book);
+
+        return BookResponseDTO.toBookResponseDTO(book);
+    }
 }
