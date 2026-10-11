@@ -12,5 +12,5 @@ public interface BookRepository extends JpaRepository<Book,Integer> {
     Optional<Book> findByNameContainingIgnoreCaseAndIsDeletedFalse(String name);
     List<Book> findByIsDeletedFalse();
 
-    List<Book> findByAuthorId(Integer id);
+    List<Book> findByAuthorIdAndIsDeletedFalse(Integer id);
 }

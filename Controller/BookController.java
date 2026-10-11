@@ -51,4 +51,19 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(bookService.updateBookService(name,bookRequestDTO));
     }
+
+    @PatchMapping("/delete")
+    public ResponseEntity<String> softDeleteBookController(@RequestParam String name){
+        bookService.softDeleteBookService(name);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Book Deleted Successfully");
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteBookController(@RequestParam String name){
+        bookService.deleteBookService(name);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body("Book Deleted Successfully");
+    }
 }

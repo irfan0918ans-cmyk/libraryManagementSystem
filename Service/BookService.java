@@ -52,7 +52,7 @@ public class BookService {
         Author author = authorRepository.findByAuthorNameContainingIgnoreCaseAndIsDeletedFalse(name)
                 .orElseThrow(()-> new AuthorNotFoundException("Author Not Found"));
 
-        List<Book> book = bookRepository.findByAuthorId(author.getId());
+        List<Book> book = bookRepository.findByAuthorIdAndIsDeletedFalse(author.getId());
 
         return book
                 .stream()
@@ -80,5 +80,21 @@ public class BookService {
         bookRepository.save(book);
 
         return BookResponseDTO.toBookResponseDTO(book);
+    }
+
+    public void softDeleteBookService(String name){
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+                .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
+
+        book.setIsDeleted(true);
+        book.setDeletedAt(LocalDateTime.now());
+        bookRepository.save(book);
+    }
+
+    public void deleteBookService(String name){
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+                .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
+
+        bookRepository.deleteById(book.getId());
     }
 }
