@@ -3,6 +3,7 @@ package com.management.libraryManagementSystem.Controller;
 import com.management.libraryManagementSystem.DTO.AuthorDTO.AuthorRequestDTO;
 import com.management.libraryManagementSystem.DTO.AuthorDTO.AuthorResponseDTO;
 import com.management.libraryManagementSystem.Service.AuthorService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +21,13 @@ public class AuthorController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<AuthorResponseDTO> saveAuthorController(@RequestBody AuthorRequestDTO authorRequestDTO){
+    public ResponseEntity<AuthorResponseDTO> saveAuthorController(@Valid @RequestBody AuthorRequestDTO authorRequestDTO){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(authorService.saveAuthorService(authorRequestDTO));
     }
 
     @GetMapping("/getAuthor")
-    public ResponseEntity<AuthorResponseDTO> getAuthorByNameController(@RequestParam String name){
+    public ResponseEntity<AuthorResponseDTO> getAuthorByNameController(@Valid @RequestParam String name){
         return  ResponseEntity.status(HttpStatus.OK)
                 .body(authorService.findByNameAuthorService(name));
     }
@@ -38,14 +39,14 @@ public class AuthorController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<AuthorResponseDTO> updateAuthorController(@RequestParam String name,
-                                                                    @RequestBody AuthorRequestDTO authorRequestDTO){
+    public ResponseEntity<AuthorResponseDTO> updateAuthorController(@Valid @RequestParam String name,
+                                                                    @Valid @RequestBody AuthorRequestDTO authorRequestDTO){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(authorService.updateAuthorService(name,authorRequestDTO));
     }
 
     @PatchMapping("/delete")
-    public ResponseEntity<String> softDeleteController(@RequestParam String name){
+    public ResponseEntity<String> softDeleteController(@Valid @RequestParam String name){
        authorService.softDeleteService(name);
        return ResponseEntity.status(HttpStatus.OK)
                .body("Author Deleted Successfully");
