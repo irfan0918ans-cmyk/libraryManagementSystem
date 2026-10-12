@@ -12,7 +12,7 @@ import lombok.Setter;
 public class BookRequestDTO {
 
     private String name;
-    private String Edition;
+    private String edition;
     private double price;
     private String publishedBy;
 

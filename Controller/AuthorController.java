@@ -52,11 +52,4 @@ public class AuthorController {
 
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<String> hardDeleteController(@RequestParam String name){
-        authorService.hardDeleteService(name);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body("Author Deleted Successfully");
-    }
-
 }

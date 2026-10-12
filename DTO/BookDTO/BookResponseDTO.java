@@ -1,6 +1,6 @@
 package com.management.libraryManagementSystem.DTO.BookDTO;
 
-import com.management.libraryManagementSystem.Entity.Author;
+
 import com.management.libraryManagementSystem.Entity.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class BookResponseDTO {
 
     private String name;
-    private String Edition;
+    private String edition;
     private double price;
     private String publishedBy;
     private LocalDateTime createdAt;
@@ -27,7 +27,7 @@ public class BookResponseDTO {
         bookResponseDTO.setPrice(book.getPrice());
         bookResponseDTO.setEdition(book.getEdition());
         bookResponseDTO.setPublishedBy(book.getPublishedBy());
-        bookResponseDTO.setCreatedAt(LocalDateTime.now());
+        bookResponseDTO.setCreatedAt(book.getCreatedAt());
         return bookResponseDTO;
     }
 

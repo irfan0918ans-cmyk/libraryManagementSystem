@@ -20,7 +20,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String Edition;
+    private String edition;
     private double price;
     private String publishedBy;
     private LocalDateTime createdAt;

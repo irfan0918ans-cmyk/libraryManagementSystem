@@ -42,7 +42,7 @@ public class BookService {
     }
 
     public BookResponseDTO getBookByBookNameService(String name){
-        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalseAndAuthor_IsDeletedFalse(name)
                 .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
 
         return BookResponseDTO.toBookResponseDTO(book);
@@ -61,14 +61,14 @@ public class BookService {
     }
 
     public List<BookResponseDTO> getAllBookService(){
-        return bookRepository.findByIsDeletedFalse()
+        return bookRepository.findByIsDeletedFalseAndAuthor_IsDeletedFalse()
                 .stream()
                 .map(book -> BookResponseDTO.toBookResponseDTO(book))
                 .toList();
     }
 
     public BookResponseDTO updateBookService(String name, BookRequestDTO bookRequestDTO){
-        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalseAndAuthor_IsDeletedFalse(name)
                 .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
 
         book.setName(bookRequestDTO.getName());
@@ -83,7 +83,7 @@ public class BookService {
     }
 
     public void softDeleteBookService(String name){
-        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalseAndAuthor_IsDeletedFalse(name)
                 .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
 
         book.setIsDeleted(true);
@@ -92,7 +92,7 @@ public class BookService {
     }
 
     public void deleteBookService(String name){
-        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalse(name)
+        Book book = bookRepository.findByNameContainingIgnoreCaseAndIsDeletedFalseAndAuthor_IsDeletedFalse(name)
                 .orElseThrow(()-> new BookNotFoundException("Book Not Found"));
 
         bookRepository.deleteById(book.getId());

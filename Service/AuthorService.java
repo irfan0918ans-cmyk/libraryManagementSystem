@@ -35,9 +35,6 @@ public class AuthorService {
         Author author = authorRepository.findByAuthorNameContainingIgnoreCaseAndIsDeletedFalse(name)
                 .orElseThrow(()-> new AuthorNotFoundException("Author Not Found"));
 
-        if (Boolean.TRUE.equals(author.getIsDeleted())){
-            throw new AuthorNotFoundException("Author Not Found");
-        }
         return AuthorResponseDTO.toResponseDTO(author);
     }
 
@@ -69,11 +66,5 @@ public class AuthorService {
         author.setIsDeleted(true);
         author.setDeletedAt(LocalDateTime.now());
         authorRepository.save(author);
-    }
-
-    public void hardDeleteService(String name){
-        Author author = authorRepository.findByAuthorNameContainingIgnoreCaseAndIsDeletedFalse(name)
-                .orElseThrow(()-> new AuthorNotFoundException("Author Not Found"));
-        authorRepository.deleteById(author.getId());
     }
 }
